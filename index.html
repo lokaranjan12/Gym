@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SURIYA'S GYM</title>
+  <style>
+    /* ... CSS styles ... */
+    label.choose-type {
+      color: #4c00ff;
+      /* background-color: #45a049; */
+    }
+
+    label.choose-type1 {
+      /* width: 0px; */
+      color: #020000;
+      /* background-color: #45a049; */
+    }
+
+    label.choose-type2 {
+      /* width: 0px; */
+      color: #020000;
+    }
+    label.choose-type4 {
+      width:50px;
+      color: #ff0000;
+      /* background-color: #45a049; */
+    }
+
+    label.choose-type5 {
+      width:50px;
+      color: #ff0000;
+      /* background-color: #45a049; */
+    }
+
+
+
+    input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+
+
+/* Style the container for inputs */
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  /* background: #f1f1f1; */
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+#letter.valid,
+#capital.valid,
+#number.valid,
+#length.valid {
+  color: green;
+}
+
+#letter.valid:before,
+#capital.valid:before,
+#number.valid:before,
+#length.valid:before {
+  position: relative;
+  left: -35px;
+  content: "\2713";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+#letter.invalid,
+#capital.invalid,
+#number.invalid,
+#length.invalid {
+  color: red;
+}
+
+#letter.invalid:before,
+#capital.invalid:before,
+#number.invalid:before,
+#length.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "\2717";
+}
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    .video-background {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .video-background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      display: flex;
+      justify-content: flex;
+      align-items: flex;
+    }
+
+    .login-form {
+      padding: 20px;
+      border-radius: 20px;
+      width: 12vw;
+      margin-top: 30vh;
+            background-color:(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      /* display: block; */
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      /* width: 100%; */
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+  .radio-container {
+    display: inline-block;
+    /* vertical-align: middle; */
+  }
+
+  </style>
+</head>
+<body>
+  <form name="frm"  method="post" action="page1.jsp" target="_blank" id="frm">
+
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="E:\gym\logo.mp4" type="video/mp4">
+      <!-- Add additional source elements for different video formats if needed -->
+    </video>
+  </div>
+
+ 
+
+  <div class="container">
+    <div class="login-form">
+      
+        <div class="form-group">
+
+          <label class="choose-type1" for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label class="choose-type2" for="password">Password:</label>
+          <input type="password" id="password" name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="submit" >
+
+        </div>
+      </form>
+
+      <script>
+        var myInput = document.getElementById("password");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+        
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function() {
+          document.getElementById("message").style.display = "block";
+        }
+        
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function() {
+          document.getElementById("message").style.display = "none";
+        }
+        
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function()
+        {
+          // Validate lowercase letters
+          var lowerCaseLetters = /[a-z]/g;
+          if(myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+          } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+        
+          // Validate capital letters
+          var upperCaseLetters = /[A-Z]/g;
+          if(myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+          } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+          }
+        
+          // Validate numbers
+          var numbers = /[0-9]/g;
+          if(myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+          } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+          }
+        
+          // Validate length
+          if(myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+          } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+          }
+        }
+        </script>
+    </div>
+    <div id="message">
+      <h3>Password must contain the following:</h3>
+      <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+      <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+      <p id="number" class="invalid">A <b>number</b></p>
+      <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+    
+  </div>
+  
+</body>
+</html>
